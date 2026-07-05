@@ -1,12 +1,15 @@
 # Nuxt Starter Template (PWA)
 
-A reusable starter for new Nuxt projects — Nuxt 4 + TypeScript + Tailwind v4 + Pinia (persisted) + Vue Query + Lucide icons + PWA (`@vite-pwa/nuxt`). Clone it, fill in the blanks, and start building.
+A reusable starter for new Nuxt projects — Nuxt 4 + TypeScript + Tailwind v4 + Pinia (persisted) + Vue Query + Lucide icons + PWA (`@vite-pwa/nuxt`). Fill in the blanks and start building.
 
 > This is the `pwa` branch — same base template plus an installable-app setup (web manifest, service worker, offline caching). Use `master` if the project doesn't need PWA.
 
 ## Getting Started
 
+Click **Use this template** (top right on GitHub) and tick **Include all branches** so this branch comes along, then in your new repo:
+
 ```bash
+git checkout pwa
 npm install
 cp .env.example .env
 npm run dev
