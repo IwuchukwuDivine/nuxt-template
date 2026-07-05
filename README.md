@@ -2,13 +2,11 @@
 
 A reusable starter for new Nuxt projects — Nuxt 4 + TypeScript + Tailwind v4 + Pinia (persisted) + Vue Query + Lucide icons. Clone it, fill in the blanks, and start building.
 
-> **Want a PWA?** Use the [`pwa` branch](../../tree/pwa) instead — same template plus `@vite-pwa/nuxt`, a manifest ready to fill in, and icon generation via `npm run generate-pwa-assets`:
->
-> ```bash
-> git clone -b pwa <repo-url> my-app
-> ```
+> **Want a PWA?** Use the [`pwa` branch](../../tree/pwa) instead — same template plus `@vite-pwa/nuxt`, a manifest ready to fill in, and icon generation via `npm run generate-pwa-assets`. When clicking **Use this template**, tick **Include all branches**, then `git checkout pwa` in your new repo.
 
 ## Getting Started
+
+Click **Use this template** (top right on GitHub) to create your new project repo, then:
 
 ```bash
 npm install
