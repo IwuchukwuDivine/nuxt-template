@@ -61,7 +61,10 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
-      include: ["@vueuse/core"],
+      include: [
+        '@tanstack/vue-query',
+        '@vueuse/core',
+        'lucide-vue-next',],
     },
   },
 
