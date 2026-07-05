@@ -57,6 +57,11 @@ server/
                          # health.get.ts → GET /api/health
 
 public/                  # Static files served as-is (favicon, robots.txt, images)
+
+.claude/
+└── skills/
+    └── nuxt-conventions/  # Claude Code skill — enforces these project conventions
+                           # (directory structure, script setup, styling, stores)
 ```
 
 ## Conventions
