@@ -13,9 +13,9 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "pinia-plugin-persistedstate/nuxt",
     "nuxt-lucide-icons",
+    "@vite-pwa/nuxt",
     // Optional — add when needed:
     // "@nuxtjs/sitemap",
-    // "@vite-pwa/nuxt",
   ],
 
   // ── Fill in your app identity here ──
@@ -35,6 +35,14 @@ export default defineNuxtConfig({
         { name: "theme-color", content: "" },
         { name: "author", content: "" },
 
+        // PWA / installed app
+        { name: "mobile-web-app-capable", content: "yes" },
+        { name: "apple-mobile-web-app-capable", content: "yes" },
+        {
+          name: "apple-mobile-web-app-status-bar-style",
+          content: "black-translucent",
+        },
+
         // Open Graph
         { property: "og:site_name", content: "" },
         { property: "og:type", content: "website" },
@@ -49,7 +57,14 @@ export default defineNuxtConfig({
         { name: "twitter:description", content: "" },
         { name: "twitter:image", content: "" },
       ],
-      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+        {
+          rel: "apple-touch-icon",
+          sizes: "180x180",
+          href: "/apple-touch-icon-180x180.png",
+        },
+      ],
     },
   },
 
@@ -103,4 +118,78 @@ export default defineNuxtConfig({
   },
   components: true,
   css: ["~/assets/css/main.css"],
+
+  // ── PWA — fill in the manifest per project ──
+  // Icons come from `npm run generate-pwa-assets` (see pwa-assets.config.ts)
+  pwa: {
+    registerType: "autoUpdate",
+    devOptions: {
+      enabled: false,
+      suppressWarnings: true,
+      type: "module",
+    },
+    manifest: {
+      name: "",
+      short_name: "",
+      description: "",
+      lang: "en",
+      theme_color: "",
+      background_color: "",
+      display: "standalone",
+      start_url: "/?source=pwa",
+      scope: "/",
+      icons: [
+        {
+          src: "/pwa-64x64.png",
+          sizes: "64x64",
+          type: "image/png",
+          purpose: "any",
+        },
+        {
+          src: "/pwa-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "any",
+        },
+        {
+          src: "/pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any",
+        },
+        {
+          src: "/maskable-icon-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+          purpose: "maskable",
+        },
+        {
+          src: "/maskable-icon-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "maskable",
+        },
+      ],
+    },
+    workbox: {
+      maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10MB
+      globPatterns: ["**/*.{css,otf,html,js,svg,png,jpg,jpeg,webp}"],
+      navigateFallback: null,
+      ignoreURLParametersMatching: [/^utm_/, /^fbclid$/, /^source/],
+      cleanupOutdatedCaches: true,
+      clientsClaim: true,
+      // Per-project runtime caching, e.g. for a CDN or API:
+      // runtimeCaching: [
+      //   {
+      //     urlPattern: /\/api\/products/,
+      //     handler: "NetworkFirst",
+      //     options: {
+      //       cacheName: "api-products",
+      //       expiration: { maxEntries: 30, maxAgeSeconds: 24 * 60 * 60 },
+      //       networkTimeoutSeconds: 5,
+      //     },
+      //   },
+      // ],
+    },
+  },
 });

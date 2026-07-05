@@ -1,6 +1,8 @@
-# Nuxt Starter Template
+# Nuxt Starter Template (PWA)
 
-A reusable starter for new Nuxt projects — Nuxt 4 + TypeScript + Tailwind v4 + Pinia (persisted) + Vue Query + Lucide icons. Clone it, fill in the blanks, and start building.
+A reusable starter for new Nuxt projects — Nuxt 4 + TypeScript + Tailwind v4 + Pinia (persisted) + Vue Query + Lucide icons + PWA (`@vite-pwa/nuxt`). Clone it, fill in the blanks, and start building.
+
+> This is the `pwa` branch — same base template plus an installable-app setup (web manifest, service worker, offline caching). Use `master` if the project doesn't need PWA.
 
 ## Getting Started
 
@@ -18,6 +20,14 @@ npm run dev
 4. **`.env.example`** → document the project's env vars, then `cp .env.example .env`
 5. **`public/`** → replace `favicon.ico`, add your logo and icons
 6. **Fonts** → drop `.ttf` files in `app/assets/fonts/`, uncomment the `fonts` block in `nuxt.config.ts`, and update `--font-family` in `main.css`
+7. **PWA manifest** → in `nuxt.config.ts` fill in the `pwa.manifest` fields (name, short_name, description, theme_color, background_color)
+8. **PWA icons** → drop your logo at `public/logo.svg` (or update the path and `BACKGROUND_COLOR` in `pwa-assets.config.ts`), then:
+
+   ```bash
+   npm run generate-pwa-assets
+   ```
+
+   Icons land in `public/` (`pwa-*.png`, `maskable-icon-*.png`, `apple-touch-icon-180x180.png`, favicons) and are already referenced by the manifest and the `apple-touch-icon` link in `app.head`. Add per-project `runtimeCaching` rules in `pwa.workbox` if you need offline caching for APIs or a CDN.
 
 ## Folder Guide
 
@@ -78,7 +88,6 @@ public/                  # Static files served as-is (favicon, robots.txt, image
 
 | Module | Purpose |
 |--------|---------|
-| `@vite-pwa/nuxt` | PWA / installable app |
 | `@nuxtjs/sitemap` | Sitemap generation (needs `site.url` in config) |
 | `@supabase/supabase-js` | Supabase backend |
 | `resend` | Transactional email (server-side) |
